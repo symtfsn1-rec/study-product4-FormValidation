@@ -1,0 +1,18 @@
+@charset "UTF-8";
+
+.error-message {
+  color: #ff4d4d;
+  font-size: 0.9rem;
+  margin-top: 5px;
+  display: block;
+  height: 1rem;
+}
+
+input {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
