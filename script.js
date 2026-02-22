@@ -24,7 +24,7 @@ function validateEmail() {
     return true;
   } else {
     emailError.textContent = '正しいメールアドレス形式で入力してください';
-    return true;
+    return false;
   }
 }
 
@@ -35,7 +35,7 @@ function toggleSubmitButton() {
   if (isNameValid && isEmailValid) {
     submitBtn.disabled = false;
   } else {
-    submitBtn.disabled = true;
+    submitBtn.disabled = false;
   }
 }
 
@@ -47,4 +47,16 @@ usernameInput.addEventListener('input', () => {
 emailInput.addEventListener('input', () => {
   validateEmail();
   toggleSubmitButton();
+});
+
+contactForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+
+  submitBtn.textContent = '送信中';
+  submitBtn.disabled = true;
+
+  setTimeout(() => {
+    contactForm.reset();
+    contactForm.innerHTML = '<h2>お問い合わせありがとうございました！</h2><p>内容を確認後、折り返しご連絡いたします。</p>';
+  }, 3000);
 });
