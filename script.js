@@ -28,10 +28,23 @@ function validateEmail() {
   }
 }
 
+function toggleSubmitButton() {
+  const isNameValid = usernameInput.value.trim().length >= 3;
+  const isEmailValid = emailPattern.test(emailInput.value.trim());
+
+  if (isNameValid && isEmailValid) {
+    submitBtn.disabled = false;
+  } else {
+    submitBtn.disabled = true;
+  }
+}
+
 usernameInput.addEventListener('input', () => {
   validateName();
+  toggleSubmitButton();
 });
 
 emailInput.addEventListener('input', () => {
   validateEmail();
+  toggleSubmitButton();
 });
