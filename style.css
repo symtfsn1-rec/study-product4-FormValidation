@@ -1,1 +1,18 @@
 @charset "UTF-8";
+
+.error-message {
+  color: #ff4d4d;
+  font-size: 0.85rem;
+  margin-top: 5px;
+  display: block;
+  height: 1rem; /* メッセージがない時も高さを確保してガタつきを防ぐ */
+}
+
+input {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box; /* paddingを含めたサイズ計算にする実務設定 */
+}
