@@ -1,16 +1,16 @@
-// 1. HTML要素の取得（操作の対象をJSに読み込む）
+// HTML要素の取得（操作の対象をJSに読み込む）
 const contactForm = document.getElementById('contactForm');
 const usernameInput = document.getElementById('username');
-const emailInput = document.getElementById('emailInput');
+const emailInput = document.getElementById('email');
 const nameError = document.getElementById('nameError');
-const emailError = document.getElementById('mailError');
+const emailError = document.getElementById('emailError');
 const submitBtn = document.getElementById('submitBtn');
 
-// 2. バリデーション用ルール（正規表現）の定義
+// バリデーション用ルール（正規表現）の定義
 // メールアドレスの形式チェック用パターン
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-// 3. 名前入力のバリデーション関数
+// 名前入力のバリデーション関数
 const validationName = () => {
   const value = usernameInput.value.trim();
 
@@ -19,11 +19,11 @@ const validationName = () => {
     return true;
   } else {
     nameError.textContent = '名前は3文字以上で入力してください';
-    return true;
+    return false;
   }
 };
 
-// 4. メール入力のバリデーション関数
+// メール入力のバリデーション関数
 const validationEmail = () => {
   const value = emailInput.value.trim();
 
@@ -31,16 +31,30 @@ const validationEmail = () => {
     emailError.textContent = '';
     return true;
   } else {
-    emailError.textContent = '名前は3文字以上で入力してください';
+    emailError.textContent = '正しいメールアドレス形式で入力してください';
     return false;
   }
 };
 
-// 5. 入力イベント（input）に紐付け
+// 全てのバリデーションがOKか判定し、ボタンのdisabledを切り替える関数
+const toggleSubmitButton = () => {
+  const isNameValid = usernameInput.value.trim().length >= 3;
+  const isEmailValid = emailPattern.test(emailInput.value.trim());
+
+  if (isNameValid && isEmailValid) {
+    submitBtn.disabled = false;
+  } else {
+    submitBtn.disabled = true;
+  }
+};
+
+// 入力イベント（input）に紐付け
 usernameInput.addEventListener('input', () => {
   validationName();
+  toggleSubmitButton();
 });
 
 emailInput.addEventListener('input', () => {
   validationEmail();
+  toggleSubmitButton();
 });
