@@ -58,3 +58,17 @@ emailInput.addEventListener('input', () => {
   validationEmail();
   toggleSubmitButton();
 });
+
+// フォームの送信イベントを監視
+contactForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+
+  submitBtn.textContent = '送信中';
+  submitBtn.disabled = true;
+
+  setTimeout(() => {
+    contactForm.reset();
+    contactForm.innerHTML = '<h2>お問い合わせありがとうございました！</h2><p>内容を確認後、折り返しご連絡いたします。</p>';
+  }, 1500);
+
+});
